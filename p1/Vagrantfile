@@ -1,0 +1,47 @@
+server_ip = "192.168.42.110"
+worker_ip = "192.169.42.111"
+server_script = <<-SHELL
+    sudo -i
+    systemctl disable firewalld --now
+    export INSTALL_K3S_EXEC="--bind-address=#{server_ip} --node-external-ip=#{server_ip} --flannel-iface=eth1"
+    curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" sh -s -
+    cp /var/lib/rancher/k3s/server/token /vagrant_shared
+    cp /etc/rancher/k3s/k3s.yaml /vagrant_shared
+    SHELL
+
+agent_script = <<-SHELL
+    sudo -i
+    export K3S_TOKEN_FILE=/vagrant_shared/token
+    export K3S_URL=https://#{server_ip}:6443
+    export INSTALL_K3S_EXEC="--flannel-iface=eth1"
+    curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" sh -s -
+    SHELL
+
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/centos7"
+  config.vm.define "artamS" do |master_config|
+    master_config.vm.hostname = "artamS"
+    master_config.vm.synced_folder "./shared", "/vagrant_shared"
+    master_config.vm.network  "private_network" , ip: server_ip
+    master_config.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 1
+      v.name = "artamS"
+    end
+   master_config.vm.provision "shell", inline: server_script
+  end
+
+  config.vm.define "artamSW" do |worker_config|
+    worker_config.vm.hostname = "artamSW"
+    worker_config.vm.synced_folder "./shared", "/vagrant_shared"
+    worker_config.vm.network  "private_network" , ip: worker_ip
+    worker_config.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 1
+      v.name = "artamSW"
+    end
+    worker_config.vm.provision "shell", inline: agent_script
+  end
+
+end
