@@ -1,10 +1,6 @@
- rm -rf ~/VirtualBox\ VMs
- rm -rf ~/.vagrant.d
+rm -rf $HOME/VirtualBox\ VMs $HOME/.vagrant.d $HOME/goinfre/VirtualBox\ VMs $HOME/goinfre/.vagrant.d
 
- cp -r ~/.vagrant.d ~/goinfre 
- rm -rf ~/.vagrant.d 
- ln -s ~/goinfre/.vagrant.d ~/.vagrant.d
+mkdir $HOME/goinfre/VirtualBox\ VMs $HOME/goinfre/.vagrant.d
 
- cp -r ~/VirtualBox\ VMs ~/goinfre 
-rm -rf ~/VirtualBox\ VMs/
- ln -s ~/goinfre/VirtualBox\ ~/VirtualBox\ VMs/
+ln -s $HOME/goinfre/.vagrant.d $HOME/.vagrant.d
+ln -s $HOME/goinfre/VirtualBox\ VMs $HOME/VirtualBox\ VMs
