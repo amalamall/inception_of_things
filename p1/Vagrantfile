@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
       v.cpus = 1
       v.name = "artamS"
     end
-   master_config.vm.provision "shell", path: './server_script.sh'
+   master_config.vm.provision "shell", path: './scripts/server_script.sh'
   end
 
   config.vm.define "artamSW" do |worker_config|
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
       v.name = "artamSW"
     end
     
-    worker_config.vm.provision "shell", path: './worker_script.sh'
+    worker_config.vm.provision "shell", path: './scripts/worker_script.sh'
   end
 
 end
