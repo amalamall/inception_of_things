@@ -5,10 +5,12 @@ metadata:
 spec:
   selector:
     app: app-one
+  # type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8080
+      # nodePort: 30000
 
 ---
 apiVersion: v1
