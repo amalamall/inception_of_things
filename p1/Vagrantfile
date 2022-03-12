@@ -1,6 +1,8 @@
+
 server_ip = "192.168.42.110"
 worker_ip = "192.168.42.111"
 
+system 'mkdir', '-p', './shared'
 
 Vagrant.configure("2") do |config|
   config.vm.box = "generic/centos7"
