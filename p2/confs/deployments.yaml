@@ -27,7 +27,7 @@ kind: Deployment
 metadata:
   name: app-two
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
        app: app-two
