@@ -5,7 +5,7 @@ worker_ip = "192.168.42.111"
 system 'mkdir', '-p', './shared'
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "generic/centos7"
+  config.vm.box = "generic/centos8"
   config.vm.define "artamS" do |master_config|
     master_config.vm.hostname = "artamS"
     master_config.vm.synced_folder "./shared", "/vagrant_shared"
