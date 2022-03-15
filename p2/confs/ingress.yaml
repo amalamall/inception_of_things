@@ -4,7 +4,6 @@ metadata:
   name: ingress-apps
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    # nginx.ingress.kubernetes.io/default-backend: app-three
 spec:
   defaultBackend:
     service:
@@ -25,7 +24,7 @@ spec:
       http:
         paths:
           - path: /
-            pathType: Exact
+            pathType: Prefix
             backend:
               service:
                 name: app-one
@@ -35,7 +34,7 @@ spec:
       http:
         paths:
           - path: /
-            pathType: Exact
+            pathType: Prefix
             backend:
               service:
                 name: app-two
@@ -45,7 +44,7 @@ spec:
       http:
         paths:
           - path: /
-            pathType: Exact
+            pathType: Prefix
             backend:
               service:
                 name: app-three
