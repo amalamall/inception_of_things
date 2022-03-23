@@ -13,7 +13,7 @@ echo \
 # update
 apt-get update
 # install docker
-apt-get install docker-ce docker-ce-cli containerd.io
+apt-get install -y docker.io
 
 # install k3d
 curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
