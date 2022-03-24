@@ -1,6 +1,5 @@
 #!/bin/bash
-#sudo k3d cluster create my-cluster --api-port 6443 -p 8080:80@loadbalancer
-k3d cluster create my-cluster
+k3d cluster create my-cluster --api-port 6443 -p 8080:80@loadbalancer
 kubectl create namespace argocd
 kubectl create namespace dev
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
@@ -13,7 +12,6 @@ kubectl patch deploy argocd-server \
     -n argocd \
     -p '[{"op": "add", "path": "/spec/template/spec/containers/0/command/-", "value": "--insecure"}]' \
     --type json
+kubectl apply -f $PWD/../confs/
 cd ~
 git clone https://github.com/amalamall/artam.git dev
-kubectl apply -f ~/dev/config/deployment.yaml
-kubectl apply -f ~/dev/config/service.yaml  

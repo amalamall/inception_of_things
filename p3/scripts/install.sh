@@ -2,6 +2,7 @@
 
 # update
 apt-get update && apt upgrade -y
+apt install rsync net-tools -y
 # install docker
 # set up repository docker
 apt-get install ca-certificates curl gnupg lsb-release -y
@@ -22,4 +23,4 @@ curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 # install aptache2-utils
-apt install apache2-utils 
+apt install apache2-utils -y
