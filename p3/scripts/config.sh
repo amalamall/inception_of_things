@@ -6,7 +6,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 #curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 #chmod +x /usr/local/bin/argocd
 #kubectl port-forward svc/argocd-server -n argocd 8080:443 --address='0.0.0.0' > /dev/null 0>&1 &
-ARGOCDINITIALPASS=12341234
+ARGOCDINITIALPASS=1337@LEET
 kubectl patch secret   -n argocd argocd-secret  -p '{"stringData": { "admin.password": "'$(htpasswd -bnBC 10 "" ${ARGOCDINITIALPASS} | tr -d ':\n')'"}}'
 kubectl patch deploy argocd-server \
     -n argocd \
