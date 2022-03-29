@@ -11,8 +11,8 @@ Vagrant.configure("2") do |config|
       v.cpus = 2
       v.name = "alzaynouS"
     end
-   master_config.vm.provision "shell", path: './scripts/install.sh'
-   master_config.vm.provision "shell", path: './scripts/config.sh'
+   master_config.vm.provision "shell", path: './scripts/install.sh', privileged: false
+   master_config.vm.provision "shell", path: './scripts/config.sh', privileged: false
   end
 
 end
