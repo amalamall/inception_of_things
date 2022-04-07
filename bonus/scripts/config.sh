@@ -9,4 +9,4 @@ sudo kubectl patch deploy argocd-server \
     -n argocd \
     -p '[{"op": "add", "path": "/spec/template/spec/containers/0/command/-", "value": "--insecure"}]' \
     --type json
-sudo kubectl apply -f $(dirname "$0" | awk 'BEGIN{FS=OFS="/"}NF--')"/confs" -n argocd
+#sudo kubectl apply -f $(dirname "$0" | awk 'BEGIN{FS=OFS="/"}NF--')"/confs" -n argocd
