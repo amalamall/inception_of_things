@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/amalamall/artam.git
+    repoURL: http://192.168.42.110/root/artam.git/
     targetRevision: HEAD
     path: config
   destination: 

@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo k3d cluster create my-cluster --api-port 6443 -p 8080:80@loadbalancer --port 8443:443@loadbalancer  --port 8888:8888@loadbalancer
+sudo k3d cluster create my-cluster --api-port 6443 -p 8080:80@loadbalancer -p 8443:443@loadbalancer  -p 8888:8888@loadbalancer -p 9000:9000@loadbalancer
 sudo kubectl create namespace argocd
 sudo kubectl create namespace dev
 sudo kubectl create namespace gitlab
@@ -10,5 +10,7 @@ sudo kubectl patch deploy argocd-server \
     -n argocd \
     -p '[{"op": "add", "path": "/spec/template/spec/containers/0/command/-", "value": "--insecure"}]' \
     --type json
-#sudo kubectl apply -f $(dirname "$0" | awk 'BEGIN{FS=OFS="/"}NF--')"/confs" -n argocd
-#sudo kubectl exec --namespace gitlab -it gitlab-deployment-77bd9b5759-kb4ts -- /bin/sh
+sudo docker run -d -p 5000:5000 --restart=always --name registry registry:2
+sudo kubectl apply -f $(dirname "$0" | awk 'BEGIN{FS=OFS="/"}NF--')"/confs" -n argocd
+sudo kubectl apply -f $(dirname "$0" | awk 'BEGIN{FS=OFS="/"}NF--')"/confs/gitlab" -n gitlab
+#sudo kubectl exec --namespace gitlab -it gitlab-deployment-77bd9b5759-kb4ts -- /bin/bash

@@ -7,5 +7,5 @@ spec:
   selector:
     app: gitlab
   ports:
-  - port: 8888
+  - port: 9000
     targetPort: 80

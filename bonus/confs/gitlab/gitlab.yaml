@@ -16,7 +16,7 @@ spec:
         image: gitlab/gitlab-ee
         env:
           - name: GITLAB_OMNIBUS_CONFIG
-            value: "external_url 'http://gitlab-service.default/';gitlab_rails['registry_enabled'] = true;gitlab_rails['registry_api_url'] = \"http://172.17.0.2:5000\""
+            value: "external_url 'http://192.168.42.110:9000'; grafana['enable'] = false;prometheus['enable'] = false; prometheus_monitoring['enable'] = false;sidekiq['max_concurrency'] = 10;puma['worker_processes'] = 0;gitlab_rails['registry_enabled'] = true;gitlab_rails['registry_api_url'] = \"http://172.17.0.2:5000\""
         ports:
         - containerPort: 80
         volumeMounts:
