@@ -7,7 +7,9 @@ sudo kubectl create namespace gitlab
 
 helm repo add gitlab https://charts.gitlab.io/
 helm repo update
-sudo helm install --wait -n gitlab gitlab gitlab/gitlab -f /confs/gitlab/values.yaml
+sudo kubectl create secret generic gitlab-gitlab-initial-root-password --from-literal=password="1337@LEET" -n gitlab
+# --set global.initialRootPassword.secret=gitlab-gitlab-initial-root-password
+sudo helm install --wait -n gitlab gitlab gitlab/gitlab --set global.initialRootPassword.secret=gitlab-gitlab-initial-root-password -f /confs/gitlab/values.yaml 
 sudo kubectl patch svc gitlab-webservice-default -p '{"spec": {"type": "LoadBalancer"}}' -n gitlab
 
 
