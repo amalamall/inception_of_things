@@ -20,17 +20,16 @@ certmanager:
   install: false
 nginx-ingress:
   enabled: false
-# Save resources, only 3 CPU
+# Save resources
 prometheus:
   install: false
 gitlab-runner:
   install: false
 grafana:
-    install: false
+    enabled: false
 spamcheck:
-    install: false
-minio:
-    install: false
+    enabled: false
+
 # Reduce replica counts, reducing CPU & memory requirements
 gitlab:
   webservice:
