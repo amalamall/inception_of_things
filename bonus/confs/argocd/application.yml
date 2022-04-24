@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: http://192.168.42.110.nip.io/root/artam.git/
+    repoURL: http://192.168.42.110.nip.io/root/artam-config.git/
     targetRevision: HEAD
     path: config
   destination: 
